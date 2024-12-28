@@ -19,20 +19,22 @@ const auth = (...requiredRoles: TUserRole[]) => {
         const decoded = verifyToken(token, config.jwt_access_secret as string);
 
         const role = decoded.role;
-
+        console.log("not passed");
         if (
           requiredRoles.length > 0 &&
           !requiredRoles.includes(role as TUserRole)
         ) {
           throw new CustomError(
             HttpStatus.UNAUTHORIZED,
-            "you are not authorized",
+            "you are not authorizeds",
           );
         }
 
         req.user = decoded;
+        console.log("passed");
         next();
       } catch (err) {
+        console.log(err);
         throw new CustomError(
           HttpStatus.UNAUTHORIZED,
           "You Are Not Authorized",
