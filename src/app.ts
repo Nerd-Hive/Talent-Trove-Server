@@ -35,7 +35,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // app routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/profile", userRouter);
-app.use("/api/v1/job", jobRouter);
+app.use("/api/v1/jobs", jobRouter);
 app.get("/", (req: Request, res: Response) => {
   winstonLogger.info("Log: ");
   res.status(200).json({ data: "Hello, world!" });

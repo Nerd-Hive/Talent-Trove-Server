@@ -8,3 +8,4 @@ export * from "./address";
 export * from "./company";
 export * from "./job";
 export * from "./skill";
+export * from "./jobApplication";
