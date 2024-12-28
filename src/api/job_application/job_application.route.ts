@@ -25,6 +25,16 @@ router.patch(
   auth(AUTH_RULES.EMPLOYEER),
   JobApplicationController.JOB_APPLICATION_CHOOSE_ON_INTERVIEW,
 );
+router.patch(
+  "/to-selected/:jobApplicationId",
+  auth(AUTH_RULES.EMPLOYEER),
+  JobApplicationController.JOB_APPLICATION_CHOOSE_ON_SELECTED,
+);
+router.patch(
+  "/to-rejected/:jobApplicationId",
+  auth(AUTH_RULES.EMPLOYEER),
+  JobApplicationController.JOB_APPLICATION_REJECTED,
+);
 
 // JOB_SEEKER ACCCES
 router.get(
