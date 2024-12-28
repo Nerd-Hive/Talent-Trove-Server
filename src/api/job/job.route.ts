@@ -8,6 +8,8 @@ import { JobValidationSchema } from "./job.validation";
 export const router = Router();
 
 // ALL USER ACCCES
+router.get("/", JobController.GET_ALL_JOBS_FROM_DB);
+router.get("/:jobId", JobController.GET_SINGLE_JOB_POST_BY_ID);
 
 // EMPLOYEE ACCCES
 router.post(
