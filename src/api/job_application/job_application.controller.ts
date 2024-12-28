@@ -46,11 +46,12 @@ const GET_ALL_APPLIED_JOB_APPLICATIONS_BY_USER_ID = handleAsync(
   async (req, res) => {
     // getting the logged in user id
     const userId = req.user.userId;
+    console.log(userId);
 
     // query a single job post
     const result = await db.query.jobApplications.findMany({
       where: (job_application, { eq }) =>
-        eq(job_application.jobId, Number(userId)),
+        eq(job_application.userId, Number(userId)),
     });
 
     // sending response to client
@@ -61,6 +62,25 @@ const GET_ALL_APPLIED_JOB_APPLICATIONS_BY_USER_ID = handleAsync(
     });
   },
 );
+
+const JOB_APPLICATION_CHOOSE_IN_REVIEW = handleAsync(async (req, res) => {
+  // getting the logged in user id
+  const userId = req.user.userId;
+  console.log(userId);
+
+  // query a single job post
+  const result = await db.query.jobApplications.findMany({
+    where: (job_application, { eq }) =>
+      eq(job_application.userId, Number(userId)),
+  });
+
+  // sending response to client
+  formatedResponse(res, {
+    statusCode: HttpStatus.OK,
+    data: result,
+    message: "job applications retrived by applied user id!",
+  });
+});
 
 export const JobApplicationController = {
   CREATE_JOB_APPLICATION_INTO_DB,
