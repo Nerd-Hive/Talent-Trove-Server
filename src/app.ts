@@ -8,6 +8,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import { authRouter } from "./api/auth/auth.route";
+import { jobApplicationRouter } from "./api/job_application/job_application.route";
 import { jobRouter } from "./api/job/job.route";
 import { userRouter } from "./api/profile/profile.route";
 import { winstonLogger } from "./config";
@@ -36,6 +37,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/profile", userRouter);
 app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/job-applications", jobApplicationRouter);
 app.get("/", (req: Request, res: Response) => {
   winstonLogger.info("Log: ");
   res.status(200).json({ data: "Hello, world!" });

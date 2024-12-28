@@ -15,6 +15,13 @@
       "when": 1733758772983,
       "tag": "0001_fixed_lester",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1735374042114,
+      "tag": "0002_equal_red_hulk",
+      "breakpoints": true
     }
   ]
 }
