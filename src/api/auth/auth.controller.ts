@@ -45,7 +45,7 @@ const loginUserFromDB: RequestHandler = handleAsync(async (req, res) => {
   const user = await db.query.users.findFirst({
     where: eq(users.email, email.toLowerCase()),
   });
-  console.log(email, password, user);
+
   if (!user) {
     throw new CustomError(HttpStatus.NOT_FOUND, "user not found");
   }

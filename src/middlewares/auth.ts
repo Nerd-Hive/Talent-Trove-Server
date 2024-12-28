@@ -34,7 +34,10 @@ const auth = (...requiredRoles: TUserRole[]) => {
         next();
       } catch (err) {
         console.log(err);
-        throw new CustomError(HttpStatus.BAD_REQUEST, "You Are Not Authorized");
+        throw new CustomError(
+          HttpStatus.BAD_REQUEST,
+          "You Are Not Authorized, please try login your credentials",
+        );
       }
     },
   );
