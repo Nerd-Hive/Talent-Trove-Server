@@ -15,6 +15,17 @@ router.get(
   auth(AUTH_RULES.EMPLOYEER),
   JobApplicationController.GET_ALL_JOBS_APPLICATION_BY_JOB_ID,
 );
+router.patch(
+  "/to-reviewed/:jobApplicationId",
+  auth(AUTH_RULES.EMPLOYEER),
+  JobApplicationController.JOB_APPLICATION_CHOOSE_IN_REVIEW,
+);
+router.patch(
+  "/to-interviewed/:jobApplicationId",
+  auth(AUTH_RULES.EMPLOYEER),
+  JobApplicationController.JOB_APPLICATION_CHOOSE_ON_INTERVIEW,
+);
+
 // JOB_SEEKER ACCCES
 router.get(
   "/jobs/applied-jobs",
