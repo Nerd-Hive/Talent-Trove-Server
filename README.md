@@ -2,7 +2,8 @@
 
 ### Features
 
-- update soon
+![image](https://github.com/user-attachments/assets/1b77f41e-dc31-4243-8b59-fec212488ee7)
+
 
 ### Recommended Folder Structure:
 
