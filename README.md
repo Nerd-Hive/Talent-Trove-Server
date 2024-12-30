@@ -1,12 +1,8 @@
-# express-ts-starter
+# Talent Trove. Hiring Management Application
 
 ### Features
 
-- Basic Express Server
-- Linting and Formatting, pre-commit
-- Standard Fold Structure
-- Custom import aliases
-- TypeScript Support and Config
+- update soon
 
 ### Recommended Folder Structure:
 
