@@ -6,5 +6,5 @@ export const jobTags = pgTable("job_tags", {
   jobId: serial("job_id")
     .references(() => jobs.id, { onDelete: "cascade" })
     .notNull(),
-  tag: varchar("tag", { length: 50 }).notNull(),
+  tag: varchar("tag_id", { length: 50 }).notNull(),
 });

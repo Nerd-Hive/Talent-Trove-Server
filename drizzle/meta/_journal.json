@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1733593841237,
-      "tag": "0000_workable_groot",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1733758772983,
-      "tag": "0001_fixed_lester",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1735374042114,
-      "tag": "0002_equal_red_hulk",
+      "when": 1735846250688,
+      "tag": "0000_lowly_talisman",
       "breakpoints": true
     }
   ]

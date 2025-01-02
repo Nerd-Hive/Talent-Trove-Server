@@ -14,7 +14,7 @@ export const jobApplications = pgTable("job_applications", {
   userId: integer("user_id")
     .notNull()
     .references(() => users.id),
-  jobId: integer("job_id")
+  jobId: serial("job_id")
     .notNull()
     .references(() => jobs.id),
   coverLetter: text("cover_letter").notNull(),

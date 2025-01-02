@@ -1,5 +1,5 @@
 {
-  "id": "c126b50f-cf84-4816-9611-f77b98f566ef",
+  "id": "9aa81269-161f-496f-a168-2885817bd59e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -241,15 +241,39 @@
           "primaryKey": false,
           "notNull": false
         },
+        "company": {
+          "name": "company",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "address": {
+          "name": "address",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "experience": {
+          "name": "experience",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "education": {
+          "name": "education",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "contact_number": {
           "name": "contact_number",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "linkedin_url": {
-          "name": "linkedin_url",
-          "type": "text",
+        "social_link": {
+          "name": "social_link",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
@@ -275,6 +299,51 @@
           "tableFrom": "employee_profiles",
           "tableTo": "users",
           "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "employee_profiles_company_companies_id_fk": {
+          "name": "employee_profiles_company_companies_id_fk",
+          "tableFrom": "employee_profiles",
+          "tableTo": "companies",
+          "columnsFrom": ["company"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "employee_profiles_address_address_id_fk": {
+          "name": "employee_profiles_address_address_id_fk",
+          "tableFrom": "employee_profiles",
+          "tableTo": "address",
+          "columnsFrom": ["address"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "employee_profiles_experience_experiences_id_fk": {
+          "name": "employee_profiles_experience_experiences_id_fk",
+          "tableFrom": "employee_profiles",
+          "tableTo": "experiences",
+          "columnsFrom": ["experience"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "employee_profiles_education_educations_id_fk": {
+          "name": "employee_profiles_education_educations_id_fk",
+          "tableFrom": "employee_profiles",
+          "tableTo": "educations",
+          "columnsFrom": ["education"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "employee_profiles_social_link_social_links_id_fk": {
+          "name": "employee_profiles_social_link_social_links_id_fk",
+          "tableFrom": "employee_profiles",
+          "tableTo": "social_links",
+          "columnsFrom": ["social_link"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
@@ -453,8 +522,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "socialLink": {
-          "name": "socialLink",
+        "social_link": {
+          "name": "social_link",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -515,11 +584,11 @@
           "onDelete": "cascade",
           "onUpdate": "cascade"
         },
-        "job_seeker_profiles_socialLink_social_links_id_fk": {
-          "name": "job_seeker_profiles_socialLink_social_links_id_fk",
+        "job_seeker_profiles_social_link_social_links_id_fk": {
+          "name": "job_seeker_profiles_social_link_social_links_id_fk",
           "tableFrom": "job_seeker_profiles",
           "tableTo": "social_links",
-          "columnsFrom": ["socialLink"],
+          "columnsFrom": ["social_link"],
           "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
@@ -630,51 +699,52 @@
           "primaryKey": true,
           "notNull": true
         },
-        "company": {
-          "name": "company",
-          "type": "integer",
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
         },
-        "title": {
-          "name": "title",
-          "type": "text",
+        "employment_type": {
+          "name": "employment_type",
+          "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "description": {
           "name": "description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "salary_range": {
-          "name": "salary_range",
-          "type": "integer",
+        "location": {
+          "name": "location",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },
-        "address": {
-          "name": "address",
-          "type": "integer",
+        "application_deadline": {
+          "name": "application_deadline",
+          "type": "date",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
-        "status": {
-          "name": "status",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "createdBy": {
-          "name": "createdBy",
+        "created_by": {
+          "name": "created_by",
           "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
         "created_at": {
           "name": "created_at",
-          "type": "timestamp",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
           "primaryKey": false,
           "notNull": false,
           "default": "now()"
@@ -682,20 +752,11 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "jobs_company_companies_id_fk": {
-          "name": "jobs_company_companies_id_fk",
-          "tableFrom": "jobs",
-          "tableTo": "companies",
-          "columnsFrom": ["company"],
-          "columnsTo": ["id"],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        },
-        "jobs_createdBy_users_id_fk": {
-          "name": "jobs_createdBy_users_id_fk",
+        "jobs_created_by_users_id_fk": {
+          "name": "jobs_created_by_users_id_fk",
           "tableFrom": "jobs",
           "tableTo": "users",
-          "columnsFrom": ["createdBy"],
+          "columnsFrom": ["created_by"],
           "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -738,6 +799,212 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.job_applications": {
+      "name": "job_applications",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cover_letter": {
+          "name": "cover_letter",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "application_status": {
+          "name": "application_status",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'applied'"
+        },
+        "applied_at": {
+          "name": "applied_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_applications_user_id_users_id_fk": {
+          "name": "job_applications_user_id_users_id_fk",
+          "tableFrom": "job_applications",
+          "tableTo": "users",
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "job_applications_job_id_jobs_id_fk": {
+          "name": "job_applications_job_id_jobs_id_fk",
+          "tableFrom": "job_applications",
+          "tableTo": "jobs",
+          "columnsFrom": ["job_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.job_requirements": {
+      "name": "job_requirements",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "requirement": {
+          "name": "requirement",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_requirements_job_id_jobs_id_fk": {
+          "name": "job_requirements_job_id_jobs_id_fk",
+          "tableFrom": "job_requirements",
+          "tableTo": "jobs",
+          "columnsFrom": ["job_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.job_tags": {
+      "name": "job_tags",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_tags_job_id_jobs_id_fk": {
+          "name": "job_tags_job_id_jobs_id_fk",
+          "tableFrom": "job_tags",
+          "tableTo": "jobs",
+          "columnsFrom": ["job_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.job_salaries": {
+      "name": "job_salaries",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "job_id": {
+          "name": "job_id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_salary": {
+          "name": "min_salary",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_salary": {
+          "name": "max_salary",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "currency": {
+          "name": "currency",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'USD'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "job_salaries_job_id_jobs_id_fk": {
+          "name": "job_salaries_job_id_jobs_id_fk",
+          "tableFrom": "job_salaries",
+          "tableTo": "jobs",
+          "columnsFrom": ["job_id"],
+          "columnsTo": ["id"],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.seeker_skills": {
       "name": "seeker_skills",
       "schema": "",
@@ -753,6 +1020,31 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tags": {
+      "name": "tags",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "tag": {
+          "name": "tag",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": true
         }
       },
       "indexes": {},

@@ -6,7 +6,7 @@ export const jobSalaries = pgTable("job_salaries", {
   jobId: serial("job_id")
     .references(() => jobs.id, { onDelete: "cascade" })
     .notNull(),
-  minSalary: serial("min_salary").notNull(),
-  maxSalary: serial("max_salary").notNull(),
+  minSalary: serial("min_salary"),
+  maxSalary: serial("max_salary"),
   currency: varchar("currency", { length: 10 }).default("USD"),
 });

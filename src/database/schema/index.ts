@@ -9,3 +9,6 @@ export * from "./company";
 export * from "./job";
 export * from "./skill";
 export * from "./jobApplication";
+export * from "./jobRequirement";
+export * from "./jobTag";
+export * from "./jobSalary";
