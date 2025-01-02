@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   date,
   integer,
@@ -9,6 +9,9 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { companies } from "./company";
+import { jobRequirements } from "./jobRequirement";
+import { jobSalaries } from "./jobSalary";
+import { tags } from "./tag";
 import { users } from "./user";
 
 export const jobs = pgTable("jobs", {
@@ -28,3 +31,9 @@ export const jobs = pgTable("jobs", {
     sql`now()`,
   ),
 });
+
+export const jobRelations = relations(jobs, ({ many, one }) => ({
+  salaries: one(jobSalaries),
+  requirements: many(jobRequirements),
+  tags: many(tags),
+}));

@@ -92,6 +92,11 @@ const GET_SINGLE_JOB_POST_BY_ID = handleAsync(async (req, res) => {
   // query a single job post
   const result = await db.query.jobs.findFirst({
     where: (jobPost, { eq }) => eq(jobPost.id, Number(JOB_POST_ID)),
+    with: {
+      salaries: true,
+      requirements: true,
+      tags: true,
+    },
   });
 
   // sending response to client

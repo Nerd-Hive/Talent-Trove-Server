@@ -142,7 +142,8 @@ CREATE TABLE IF NOT EXISTS "job_salaries" (
 	"job_id" serial NOT NULL,
 	"min_salary" serial NOT NULL,
 	"max_salary" serial NOT NULL,
-	"currency" varchar(10) DEFAULT 'USD'
+	"currency" varchar(10) DEFAULT 'USD',
+	CONSTRAINT "job_salaries_job_id_unique" UNIQUE("job_id")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "seeker_skills" (

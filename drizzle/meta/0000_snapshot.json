@@ -1,5 +1,5 @@
 {
-  "id": "9aa81269-161f-496f-a168-2885817bd59e",
+  "id": "573c2b50-7498-4dac-af95-e893e0898a5c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -1000,7 +1000,13 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "job_salaries_job_id_unique": {
+          "name": "job_salaries_job_id_unique",
+          "nullsNotDistinct": false,
+          "columns": ["job_id"]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
