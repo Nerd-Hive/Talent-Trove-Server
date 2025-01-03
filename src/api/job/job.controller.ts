@@ -20,7 +20,7 @@ const CREATE_JOB_INTO_DB = handleAsync(async (req, res) => {
   await db.transaction(async (tx) => {
     // Insert the main job details
     const [newJob] = await tx
-      .insert(jobs) // Replace with your Drizzle ORM job table
+      .insert(jobs)
       .values({
         title: job.title,
         employmentType: job.employmentType,
@@ -73,8 +73,11 @@ const CREATE_JOB_INTO_DB = handleAsync(async (req, res) => {
 });
 
 const GET_ALL_JOBS_FROM_DB = handleAsync(async (req, res) => {
+  const { keywords, description } = req.query;
   // query all job post from database
+
   const result = await db.query.jobs.findMany({
+    where: (jobs, { eq, like }) => like(jobs.title, `%${keywords as string}%`),
     with: {
       salaries: true,
       requirements: true,
