@@ -1,10 +1,10 @@
 import { relations } from "drizzle-orm";
-import { pgTable, serial, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text } from "drizzle-orm/pg-core";
 import { jobs } from "./job";
 
 export const jobRequirements = pgTable("job_requirements", {
   id: serial("id").primaryKey(),
-  jobId: serial("job_id")
+  jobId: integer("job_id")
     .references(() => jobs.id, { onDelete: "cascade" })
     .notNull(),
   requirement: text("requirement").notNull(),
@@ -13,6 +13,9 @@ export const jobRequirements = pgTable("job_requirements", {
 export const jobRequirementRelations = relations(
   jobRequirements,
   ({ one }) => ({
-    job: one(jobs),
+    job: one(jobs, {
+      fields: [jobRequirements.jobId],
+      references: [jobs.id],
+    }),
   }),
 );

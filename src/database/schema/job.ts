@@ -11,6 +11,7 @@ import {
 import { companies } from "./company";
 import { jobRequirements } from "./jobRequirement";
 import { jobSalaries } from "./jobSalary";
+import { jobTags } from "./jobTag";
 import { tags } from "./tag";
 import { users } from "./user";
 
@@ -35,5 +36,5 @@ export const jobs = pgTable("jobs", {
 export const jobRelations = relations(jobs, ({ many, one }) => ({
   salaries: one(jobSalaries),
   requirements: many(jobRequirements),
-  tags: many(tags),
+  tags: many(jobTags),
 }));

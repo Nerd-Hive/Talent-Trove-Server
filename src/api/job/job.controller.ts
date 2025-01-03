@@ -6,7 +6,7 @@ import {
   jobSalaries,
   jobTags,
 } from "../../database/schema";
-import { handleAsync, HttpStatus } from "../../utils";
+import { CustomError, handleAsync, HttpStatus } from "../../utils";
 import formatedResponse from "../../utils/formatedResponse";
 import { IJobRequirement, TJobTags } from "./job.type";
 
@@ -87,11 +87,14 @@ const GET_ALL_JOBS_FROM_DB = handleAsync(async (req, res) => {
 
 const GET_SINGLE_JOB_POST_BY_ID = handleAsync(async (req, res) => {
   // getting the router param of job post id
-  const JOB_POST_ID = req.params.jobId;
+  const JOB_POST_ID = Number(req.params.jobId);
 
+  if (isNaN(JOB_POST_ID)) {
+    throw new CustomError(HttpStatus.BAD_REQUEST, "Invalid job ID");
+  }
   // query a single job post
   const result = await db.query.jobs.findFirst({
-    where: (jobPost, { eq }) => eq(jobPost.id, Number(JOB_POST_ID)),
+    where: (jobs, { eq }) => eq(jobs.id, JOB_POST_ID),
     with: {
       salaries: true,
       requirements: true,
