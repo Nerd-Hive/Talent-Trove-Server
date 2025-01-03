@@ -1,4 +1,3 @@
-import { eq } from "drizzle-orm";
 import { db } from "../../database";
 import {
   jobRequirements,
@@ -75,7 +74,13 @@ const CREATE_JOB_INTO_DB = handleAsync(async (req, res) => {
 
 const GET_ALL_JOBS_FROM_DB = handleAsync(async (req, res) => {
   // query all job post from database
-  const result = await db.query.jobs.findMany();
+  const result = await db.query.jobs.findMany({
+    with: {
+      salaries: true,
+      requirements: true,
+      tags: true,
+    },
+  });
 
   // sending response to client
   formatedResponse(res, {
